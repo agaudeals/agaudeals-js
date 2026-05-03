@@ -1,0 +1,19 @@
+name: Reconcile Stooq vs LBMA (gold PM)
+
+on:
+  schedule:
+    # 16:30 UTC, daily — ~1h after the LBMA London PM fix posts.
+    - cron: '30 16 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run reconcile:lbma
+        env:
+          DRIFT_THRESHOLD: '0.05'

@@ -1,0 +1,33 @@
+{
+  "name": "agaudeals-js",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo for the @agaudeals package family.",
+  "license": "MIT",
+  "homepage": "https://agaudeals.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agaudeals/agaudeals-js.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    "lint": "eslint \"packages/*/src/**/*.ts\" \"packages/*/test/**/*.ts\"",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "reconcile:lbma": "node packages/spot-price/scripts/reconcile-lbma.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  }
+}
